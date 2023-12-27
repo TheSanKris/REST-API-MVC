@@ -29,6 +29,18 @@ const putProductM = (product) => {
     fs.writeFileSync(fileName, data);
 }
 
+const postProductM = (params) => {
+    let data = fs.readFileSync(fileName, "utf-8");
+    const users = JSON.parse(data);    
+     
+    users.push(params);
+
+    data = JSON.stringify(users);
+    fs.writeFileSync(fileName, data);
+            
+    return true;
+}
+
 const deleteProductM = (id) => {
     let data = fs.readFileSync(fileName, "utf-8");
     const products = JSON.parse(data);
@@ -47,4 +59,4 @@ const deleteProductM = (id) => {
     return products;
 }
 
-module.exports = {getProductM, getProductsM, deleteProductM};
+module.exports = {getProductM, getProductsM, deleteProductM, postProductM};
